@@ -1,60 +1,21 @@
-extern crate orbtk;
-
-// use std::sync::Arc;
-
-// use orbtk::{Application, Button, Center, Container, Content, Rect, Row, Padding, TextBlock, Widget};
-
-// struct MainView {}
-
-// impl MainView {
-//     fn new() -> Arc<MainView> {
-//         Arc::new(MainView {})
-//     }
-// }
-
-// impl Widget for MainView {
-//     fn build(&self) -> Content {
-//         /* todo: content! marco
-//             content!(
-//                 Center (
-//                     Row (
-//                         Container (
-//                             padding: 8,
-//                             Button (
-//                                 text: "Button" 1
-//                             )
-//                         )
-//                         Container (
-//                             padding: 8,
-//                             Button (
-//                                 text: "Button 2"
-//                             )
-//                         )
-//                     )
-//                 )
-//             )
-//         */
-//         Content::Single(Button::new())
-//         // let center = Center::new();
-//         // // let row = Row::new();
-//         // // let left_container = Container::new();
-//         // // left_container.padding().set(Padding::new(8, 8, 8, 8));
-//         // // left_container.child(&Button::new());
-//         // // row.push(&left_container);
-//         // // let right_container = Container::new();
-//         // // right_container.padding().set(Padding::new(8, 8, 8, 8));
-//         // // right_container.child(&Button::new());
-//         // // row.push(&right_container);
-//         // let label = TextBlock::new("Test");
-//         // center.child(&label);
-//         // Content::Single(center)
-//     }
-//     fn element(&self) -> &str {
-//         "mainView"
-//     }
-// }
+use orbtk::prelude::*;
 
 fn main() {
-    // let application = Application::new(Rect::new(0, 0, 420, 730), "Orbtk");
-    // application.root(&MainView::new()).run();
+    // use this only if you want to run it as web application.
+    orbtk::initialize();
+
+    Application::new()
+        .window(|ctx| {
+            Window::create()
+                .title("OrbTk - image example")
+                .position((100.0, 100.0))
+                .size(800.0, 420.0)
+                .child(
+                    ImageWidget::create()
+                        .image("res/orbtk-space.png")
+                        .build(ctx),
+                )
+                .build(ctx)
+        })
+        .run();
 }

@@ -1,29 +1,17 @@
-extern crate orbtk;
-use orbtk::*;
-
-struct MainView;
-
-impl Widget for MainView {
-    fn create() -> Template {
-        Template::default()
-            .as_parent_type(ParentType::Single)
-            .with_debug_name("MainView")
-            .with_child(
-                Container::create()
-                    .as_parent_type(ParentType::Single)
-                    .with_child(TextBlock::create().with_property(Label::from("OrbTk"))),
-            )
-    }
-}
+use orbtk::prelude::*;
 
 fn main() {
-    let mut application = Application::default();
-    application
-        .create_window()
-        .with_bounds(Rect::new(0, 0, 420, 730))
-        .with_title("Orbtk")
-        .with_root(MainView::create())
-        .with_debug_flag(true)
-        .build();
-    application.run();
+    // use this only if you want to run it as web application.
+    orbtk::initialize();
+
+    Application::new()
+        .window(|ctx| {
+            Window::create()
+                .title("OrbTk - minimal example")
+                .position((100.0, 100.0))
+                .size(420.0, 730.0)
+                .child(TextBlock::create().text("OrbTk").margin(4.0).build(ctx))
+                .build(ctx)
+        })
+        .run();
 }
